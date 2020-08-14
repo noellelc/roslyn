@@ -15,8 +15,10 @@ pr:
 - demos/*
 
 jobs:
-- task: RichCodeNavIndexer@0
-  inputs:
-    languages: 'csharp'
-    githubServiceConnection: 'noellelc'
-    environment: 'production'
+- job: Rich Nav Indexing
+  steps:
+  - task: RichCodeNavIndexer@0
+    inputs:
+      languages: 'csharp'
+      githubServiceConnection: 'noellelc'
+      environment: 'production'
