@@ -15,7 +15,7 @@ pr:
 - demos/*
 
 jobs:
-- job: Rich Nav Indexing
+- job: RichNavIndexingTest
   steps:
   - task: RichCodeNavIndexer@0
     inputs:
