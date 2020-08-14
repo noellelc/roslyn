@@ -15,10 +15,21 @@ pr:
 - demos/*
 
 jobs:
-- job: RichNavIndexingTest
+- job: RichCodeNav_Indexing
+  variables:
+    EnableRichCodeNavigation: true
+  timeoutInMinutes: 20
+
   steps:
-  - task: RichCodeNavIndexer@0
-    inputs:
-      languages: 'csharp'
-      githubServiceConnection: 'noellelc'
-      environment: 'production'
+    - script: eng/cibuild.cmd -configuration Debug -prepareMachine
+      displayName: Build
+
+    - task: RichCodeNavIndexer@0
+      displayName: RichCodeNav Upload
+      inputs:
+        languages: 'csharp'
+        environment: production
+        richNavLogOutputDirectory: $(Build.SourcesDirectory)/artifacts/bin
+      continueOnError: true
+      env:
+        DOTNET_ROOT: $(Build.SourcesDirectory)/.dotnet
