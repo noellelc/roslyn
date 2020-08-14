@@ -16,6 +16,9 @@ pr:
 
 jobs:
 - job: RichCodeNav_Indexing
+  pool:
+    name: Azure Pipelines
+    vmImage: 'windows-latest'
   variables:
     EnableRichCodeNavigation: true
   timeoutInMinutes: 200
